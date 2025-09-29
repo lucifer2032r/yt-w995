@@ -1,5 +1,6 @@
 import express from "express";
-import { YTDlpWrap } from "yt-dlp-wrap";
+import YTDlpWrapPkg from "yt-dlp-wrap";
+const { YTDlpWrap } = YTDlpWrapPkg;
 import ffmpegPath from "ffmpeg-static";
 import path from "path";
 import fs from "fs";
