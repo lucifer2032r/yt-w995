@@ -1,6 +1,8 @@
 import express from "express";
-import YTDlpWrapPkg from "yt-dlp-wrap";  // default import
-const ytDlpWrap = YTDlpWrapPkg;    // ✅ use default class directly
+import YTDlpWrapPkg from "yt-dlp-wrap";
+const YTDlpWrap = YTDlpWrapPkg.YTDlpWrap; // get class
+const ytDlpWrap = new YTDlpWrap();         // create instance
+
 import ffmpegPath from "ffmpeg-static";
 import path from "path";
 import fs from "fs";
@@ -9,12 +11,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 const STORAGE = path.resolve("./videos");
 
-// Create folder if missing
 if (!fs.existsSync(STORAGE)) fs.mkdirSync(STORAGE);
 
-// ===== CONFIG =====
-// Put your playlist ID here
-const PLAYLIST_ID = "https://youtube.com/playlist?list=PL391TjC_3CFJJkrXrZsvjbR4FfZ6DtAqt&si=X4wz4wQ6GKn6fG1D"; // Example: PLxxxxxxx
+const PLAYLIST_ID = "PL391TjC_3CFJJkrXrZsvjbR4FfZ6DtAqt";
 
 async function fetchPlaylistVideos() {
   try {
@@ -24,13 +23,14 @@ async function fetchPlaylistVideos() {
       "-J"
     ]);
     const json = JSON.parse(result);
-    // json.entries = array of videos {id, title}
     return json.entries;
   } catch (err) {
     console.error("Failed to fetch playlist:", err);
     return [];
   }
 }
+
+// ... rest of your Express routes unchanged
 
 // ===== ROUTES =====
 
