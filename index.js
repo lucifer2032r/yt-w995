@@ -1,6 +1,6 @@
 import express from "express";
 import YTDlpWrapPkg from "yt-dlp-wrap";  // default import
-const ytDlpWrap = new YTDlpWrapPkg();    // ✅ use default class directly
+const ytDlpWrap = YTDlpWrapPkg;    // ✅ use default class directly
 import ffmpegPath from "ffmpeg-static";
 import path from "path";
 import fs from "fs";
