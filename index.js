@@ -1,5 +1,6 @@
 import express from "express";
-import YTDlpWrapPkg from "yt-dlp-wrap"; // FIXED
+import YTDlpWrapPkg from "yt-dlp-wrap";  // default import
+const ytDlpWrap = new YTDlpWrapPkg();    // ✅ use default class directly
 import ffmpegPath from "ffmpeg-static";
 import path from "path";
 import fs from "fs";
@@ -14,9 +15,6 @@ if (!fs.existsSync(STORAGE)) fs.mkdirSync(STORAGE);
 // ===== CONFIG =====
 // Put your playlist ID here
 const PLAYLIST_ID = "https://youtube.com/playlist?list=PL391TjC_3CFJJkrXrZsvjbR4FfZ6DtAqt&si=X4wz4wQ6GKn6fG1D"; // Example: PLxxxxxxx
-
-// ===== Fetch playlist videos =====
-const ytDlpWrap = new YTDlpWrap();
 
 async function fetchPlaylistVideos() {
   try {
